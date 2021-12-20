@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by TJ Longshore</title>
+    <title>Hundy Bee: A Coding Project by TJ Longshore</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,6 +24,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
     <link rel="manifest" href="/img/site.webmanifest">
+
+    <!-- Hundy Bee Font Type -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sniglet&display=swap" rel="stylesheet">
 </head>
 
 <body class="d-flex flex-column h-100">
@@ -31,8 +36,8 @@
     <!-- Navbar Section -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/TL_Shadow_Circle_Dark.png"
-                    class="d-inline-block align-text-top me-2" width="30">App Name</a>
+            <a class="navbar-brand hundy-bee-font" href="#"><img src="img/Hundy_Bee_Clear.png"
+                    class="d-inline-block align-text-top me-2" width="30">Hundy Bee</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -49,10 +54,10 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">Git Repo</a>
+                        <a class="nav-link" href="https://github.com/tj-longshore/Hundy_Bee" target="_blank">Git Repo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" target="_blank">About</a>
+                        <a class="nav-link" href="https://tj-longshore-portfolio.netlify.app/" target="_blank">About</a>
                     </li>
                 </ul>
             </div>
@@ -62,22 +67,82 @@
     <!-- Main Section -->
     <main class="flex-shrink-0 py-5">
         <div class="container-fluid py-5 px-5">
-            <h2 class="border-1 border-bottom border-dark">The Code</h2>
+            <h2 class="border-1 border-bottom border-dark hundy-bee-font">The Code</h2>
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col-md-8">
                     <pre class="line-numbers">
+                        <!-- Code Goes Here-->
                         <code class="language-javascript">
-                            //Call Hello World
-                            function HelloWorld(){
-                                alert("Hello World");
+                            //get range values from The App page
+                            //Start / controller function
+                            function getValues(){
+                                //get values from the page
+                                let startingValue = document.getElementById("startingValue").value;
+                                let endingValue = document.getElementById("endingValue").value;
+                                //parse values into integers
+                                startingValue = parseInt(startingValue);
+                                endingValue = parseInt(endingValue);
+                                
+                            
+                                if(Number.isInteger(startingValue) && Number.isInteger(endingValue)){
+                                    //call generateNumbers
+                                    numbers = generateNumbers(startingValue, endingValue);
+                                    //call displayNumbers
+                                    displayNumbers(numbers);
+                                } else {
+                                    alert("Error: Values Entered Must Be Integers")
+                                }
+                            
+                            }
+                            
+                            //generate the numbers from the startingValue to endingValue
+                            //logic function(s)
+                            function generateNumbers(sValue, eValue){
+                                let numbers = [];
+                                for (let i = sValue; i <= eValue; i++){
+                                    numbers.push(i);
+                                }
+                                return numbers;
+                            }
+                            
+                            //display the numbers and mark even numbers bold
+                            //display or view function
+                            function displayNumbers(numbers){
+                            
+                                let templateRows = "";
+                            
+                                for(let i = 0; i < numbers.length; i++){
+                            
+                                    let className = "even";
+                            
+                                    let number = numbers[i];
+                            
+                                    if(number % 2 === 0){
+                                        className = "even";
+                                    }
+                                    else {
+                                        className = "odd";
+                                    }
+                                    templateRows += `&lt;tr class="${className}">&lt;td class="${className}">&lt;${number}>&lt;/td>&lt/tr>`;
+                                }
+                            
+                                document.getElementById("results").innerHTML = templateRows;
+                            
                             }
                         </code>
                     </pre>
                 </div>
                 <div class="col-md-4">
-                    <p> The Code is structured in one function</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of, "Hello World"</p>
+                    <p>The code is broken up in to three main functions:</p>
+                    <h5>getValues</h5>
+                    <p>The function "getValues" gets the starting and ending values entered on the App page. The default values are "0" and "100" respectively.<br>The if statement within this function determines if the numbers are integers, then calls the other functions "generateNumbers" and "displayNumbers" if true. If for some reason, the values are not integers, an error message will display.</p>
+                    <h5>generateNumbers</h5>
+                    <p>The function "generateNumbers" creates an empty array and pushes in the values of the integers in the range of numbers given.</p>
+                    <h5>displayNumbers</h5>
+                    displayNumbers establishes a variable "template rows" which is an empty string in order to utilize html code within JS.
+                    <br>
+                    A for loop is then utilized which increases the count of the index until it is less than the length of the variable "numbers". It then checks if the number is even and gives it the variable className value of "even" if true and odd if false. This is then utilized in the html code and styling.
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -94,7 +159,7 @@
                     </div>
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-md-center">
-                    <img src="/img/TL_Shadow_Plain_Dark.png" alt="TJ Longshore Logo" height="100">
+                    <img src="/img/TL_Shadow_Plain_Dark.png" alt="TJ Longshore Logo" height="50">
                 </div>
                 <div class="col d-flex justify-content-md-end align-items-center">
                     <div class="row">

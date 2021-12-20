@@ -8,6 +8,16 @@
     --white: #f8f9fa;
 }
 
+.odd {
+    font-weight: 100;
+}
+
+.even {
+    font-weight: bold;
+    color: --dark-color;
+    background: var(--yellow-primary);
+}
+
 body {
     color: var(--dark-color);
 }
@@ -20,9 +30,17 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--dark-color)
 }
 
+.hundy-bee-font {
+    font-family: 'Sniglet', cursive;
+}
+
 main>.container {
     padding: 60px 15px 0;
     margin-bottom: 5rem;
+}
+
+.buzzy-button:hover {
+    color: var(--yellow-primary)
 }
 
 .sticky-footer {
